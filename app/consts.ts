@@ -1,0 +1,115 @@
+/**
+ * Most of these file and directory names are copied from yarn and should be
+ * safe to delete from as they should bear no importance in an npm package
+ */
+
+/**
+ * File extensions that are safe to delete
+ */
+export const EXTENSIONS = [
+  ".markdown",
+  ".md",
+  ".mkd",
+  ".ts",
+  ".jst",
+  ".coffee",
+  ".tgz",
+  ".swp",
+];
+
+/**
+ * Directories that are safe to delete
+ */
+export const DIRECTORIES = [
+  "__tests__",
+  "test",
+  "tests",
+  "powered-test",
+  "docs",
+  "doc",
+  ".idea",
+  ".vscode",
+  ".nova",
+  "website",
+  "images",
+  "assets",
+  "example",
+  "examples",
+  "coverage",
+  ".nyc_output",
+  ".circleci",
+  ".github",
+];
+
+/**
+ * Files that are safe to delete
+ */
+export const FILES = [
+  "Jenkinsfile",
+  "Makefile",
+  "Gulpfile.js",
+  "Gruntfile.js",
+  "gulpfile.js",
+  ".DS_Store",
+  ".tern-project",
+  ".gitattributes",
+  ".editorconfig",
+  ".eslintrc",
+  "eslint",
+  ".eslintrc.js",
+  ".eslintrc.json",
+  ".eslintrc.yml",
+  ".eslintignore",
+  ".stylelintrc",
+  "stylelint.config.js",
+  ".stylelintrc.json",
+  ".stylelintrc.yaml",
+  ".stylelintrc.yml",
+  ".stylelintrc.js",
+  ".htmllintrc",
+  "htmllint.js",
+  ".lint",
+  ".npmrc",
+  ".npmignore",
+  ".jshintrc",
+  ".flowconfig",
+  ".documentup.json",
+  ".yarn-metadata.json",
+  ".travis.yml",
+  "appveyor.yml",
+  ".gitlab-ci.yml",
+  "circle.yml",
+  ".coveralls.yml",
+  "CHANGES",
+  "changelog",
+  "LICENSE.txt",
+  "LICENSE",
+  "LICENSE-MIT",
+  "LICENSE.BSD",
+  "license",
+  "LICENCE.txt",
+  "LICENCE",
+  "LICENCE-MIT",
+  "LICENCE.BSD",
+  "licence",
+  "AUTHORS",
+  "CONTRIBUTORS",
+  ".yarn-integrity",
+  ".yarnclean",
+  "_config.yml",
+  ".babelrc",
+  ".yo-rc.json",
+  "jest.config.js",
+  "karma.conf.js",
+  "wallaby.js",
+  "wallaby.conf.js",
+  ".prettierrc",
+  ".prettierrc.yml",
+  ".prettierrc.toml",
+  ".prettierrc.js",
+  ".prettierrc.json",
+  "prettier.config.js",
+  ".appveyor.yml",
+  "tsconfig.json",
+  "tslint.json",
+];
