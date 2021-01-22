@@ -1,7 +1,7 @@
 {
   "name": "ryd",
   "version": "1.0.0",
-  "description": "Zero-dependency package to prune node_modules for unnecessary files as a post-build step",
+  "description": "Zero dependency package to prune node_modules for unnecessary files as a post-build step",
   "keywords": [
     "nodejs",
     "node_modules",
@@ -10,6 +10,9 @@
   "author": "Michael Nissen <m9ssen@gmail.com>",
   "license": "MIT",
   "main": "./dist/job.js",
+  "bin": {
+    "ryd": "./dist/job.js"
+  },
   "types": "./dist/job.d.ts",
   "scripts": {
     "dev": "tsc --watch",
