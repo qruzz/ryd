@@ -1,4 +1,4 @@
-export interface Stats {
+export interface RydStats {
   filesTotal: number;
   filesDeleted: number;
   sizeDeleted: number;

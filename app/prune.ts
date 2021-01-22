@@ -1,8 +1,8 @@
 import fs from "fs";
 import path from "path";
 import { DIRECTORIES, FILES, EXTENSIONS } from "./consts";
-import { Stats } from "./types";
-import { isDirectory, isFile, logStats } from "./utils";
+import { RydStats } from "./types";
+import { isDirectory, isFile, logStats, safeStat } from "./utils";
 
 const pfs = fs.promises;
 
@@ -13,7 +13,7 @@ export async function prune(stringPath: string): Promise<void> {
 
   const paths = await walk(stringPath);
 
-  const stats: Stats = {
+  const stats: RydStats = {
     filesTotal: 0,
     filesDeleted: 0,
     sizeDeleted: 0,
@@ -21,7 +21,7 @@ export async function prune(stringPath: string): Promise<void> {
 
   await Promise.all(
     paths.map(async (each) => {
-      stats["filesTotal"] = stats["filesTotal"] + 1;
+      if (await isFile(each)) stats["filesTotal"] = stats["filesTotal"] + 1;
 
       if (await shouldPrune(each)) {
         if (await isDirectory(each)) {
@@ -30,7 +30,10 @@ export async function prune(stringPath: string): Promise<void> {
           // @ts-ignore
           const size = (await files.reduce(async (acc, file) => {
             const filePath = path.join(each, file);
-            const stat = await pfs.lstat(filePath);
+            const stat = await safeStat(filePath);
+
+            if (stat === null) return await acc;
+
             return (await acc) + stat.size;
           }, 0)) as number;
 
@@ -45,12 +48,14 @@ export async function prune(stringPath: string): Promise<void> {
         }
 
         if (await isFile(each)) {
-          const stat = await pfs.lstat(each);
+          const stat = await safeStat(each);
 
-          stats["filesDeleted"] = stats["filesDeleted"] + 1;
-          stats["sizeDeleted"] = stats["sizeDeleted"] + stat.size;
+          if (stat !== null) {
+            stats["filesDeleted"] = stats["filesDeleted"] + 1;
+            stats["sizeDeleted"] = stats["sizeDeleted"] + stat.size;
 
-          await pfs.unlink(each);
+            await pfs.unlink(each);
+          }
         }
       }
     })
@@ -86,9 +91,9 @@ async function walk(directory: string): Promise<Array<string>> {
   const files = await Promise.all(
     paths.map(async (file) => {
       const filePath = path.join(directory, file);
-      const stats = await pfs.lstat(filePath);
+      const stat = await safeStat(filePath);
 
-      if (stats.isDirectory()) {
+      if (stat && stat.isDirectory()) {
         directories.add(filePath);
         return walk(filePath);
       }
