@@ -11,7 +11,7 @@
   "license": "MIT",
   "main": "./dist/job.js",
   "bin": {
-    "ryd": "./bin/ryd.js"
+    "ryd": "./dist/job.js"
   },
   "types": "./dist/job.d.ts",
   "scripts": {
@@ -19,12 +19,10 @@
     "build": "tsc"
   },
   "directories": {
-    "app": "app",
-    "bin": "bin"
+    "app": "app"
   },
   "files": [
     "dist/**/*",
-    "bin/**/*",
     "README.md",
     "package.json"
   ],
