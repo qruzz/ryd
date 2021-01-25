@@ -9,7 +9,7 @@
   <img alt="licence" src="https://flat.badgen.net/npm/license/ryd" />
   <br />
   <br />
-  <i>If the library has has helped you, please consider giving it a ⭐️</i>
+  <p><i>If the library has has helped you, please consider giving it a ⭐️</i></p>
 </div>
 
 _ryd_ is a zero dependency npm package that can be used to prune unnecessary files from `./node_modules`, such as markdown files, typescript source files and so on. The intention for this is to be used as either a post-build step in your pipeline or within a docker layer to decrease the size of your final image.
